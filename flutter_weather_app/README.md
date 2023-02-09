@@ -11,7 +11,7 @@ The Weather Data Screen is the main screen of the app, where you can see the wea
 
 After 60 seconds, the app displays a table of 5 lines, showing the name of a city and some weather data, such as sky state, temperature, and an icon for sky state. If all the API calls succeed, the table will be displayed. Otherwise, an error message will be displayed.
 
-When the 60 seconds end, the progression bar becomes a 'Retry' button, allowing you to retry the API calls. In this screen, there is also a button in the top-left corner to navigate back to the Home Screen.
+When the 60 seconds end, the progression bar becomes a 'Recommencer' button, allowing you to retry the API calls. In this screen, there is also a button in the top-left corner to navigate back to the Home Screen.
 
 Requirements
 1. Flutter SDK
