@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen>
                 gradient: LinearGradient(colors: [
               Color.fromARGB(255, 87, 158, 216),
               Color.fromARGB(255, 135, 76, 175)
-            ])),
+            ], begin: Alignment.centerLeft, end: Alignment.topRight)),
           ),
           Positioned(
             bottom: 20,
@@ -57,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen>
               },
               child: Container(
                 margin: EdgeInsets.all(40),
-                height: 60,
+                height: 50,
                 width: MediaQuery.of(context).size.width - 80,
                 decoration: BoxDecoration(
                     color: Color.fromARGB(255, 150, 0, 117),
@@ -65,7 +65,8 @@ class _HomeScreenState extends State<HomeScreen>
                 child: Center(
                     child: Text(
                   'Commencer',
-                  style: TextStyle(fontSize: 22, color: Colors.white),
+                  style: TextStyle(
+                      fontSize: 22, color: Colors.white, letterSpacing: 1.2),
                 )),
               ),
             ),
@@ -85,8 +86,10 @@ class _HomeScreenState extends State<HomeScreen>
                       BoxDecoration(borderRadius: BorderRadius.circular(60)),
                   child: Center(
                       child: Text('Flutter Weather App',
-                          style:
-                              TextStyle(fontSize: 34, color: Colors.white)))),
+                          style: TextStyle(
+                              fontSize: 34,
+                              color: Colors.white,
+                              fontWeight: FontWeight.w400)))),
             ),
           ),
         ],

@@ -10,9 +10,13 @@ import '../data/repositories/weather_data_repo.dart';
 import '../utils/app_constants.dart';
 
 Future<void> init() async {
+  // in this project i'm not using a backend so requests are send directaly to the api.
+  // it's never like this in real project because i'm sending  api secret key in the url.
+  // and it means that this key should be stored in the client (flutter app) and could be retrieved by reverse engineering.
   // api client
+
   Get.lazyPut(() => ApiClient(
-        baseUrl: 'AppConstants.BASE_URL',
+        baseUrl: AppConstants.BASE_URL,
       ));
 
   // repos
