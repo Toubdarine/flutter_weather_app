@@ -11,14 +11,14 @@ class WeatherDataController extends GetxController implements GetxService {
   final Map<String, bool> _doesCallApiForCityMap = {};
 
 // List to store the weather data for each city
-  List<WeatherDataModel> _cityList = [];
+  final List<WeatherDataModel> _cityList = [];
 
   bool _isLoading = true;
   // Getter for the isLoading flag
   bool get isLoading => _isLoading;
   // Setter for the isLoading flag
-  set setIsLoading(bool _is) {
-    _isLoading = _is;
+  set setIsLoading(bool newState) {
+    _isLoading = newState;
     update();
   }
 
@@ -36,7 +36,6 @@ class WeatherDataController extends GetxController implements GetxService {
 
   // Function to get the weather data for a particular city
   Future<void> getWeatherByCity(int index) async {
-    int indexDividerByTen = (index / 10).toInt();
     _doesCallApiForCityMap["$index"] = true;
     WeatherDataModel? weatherData = await weatherDataRepo.getWeather(index);
     if (weatherData != null) {

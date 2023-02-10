@@ -7,11 +7,11 @@ class RouteHelper {
   static const String weatherDataRoute = "/weather-data-screen";
 
   static String getHomeRoute() {
-    return '$homeRoute';
+    return homeRoute;
   }
 
   static String getWeatherDataRoute() {
-    return '$weatherDataRoute';
+    return weatherDataRoute;
   }
 
   static List<GetPage> routes = [
@@ -20,14 +20,14 @@ class RouteHelper {
         transition: Transition.size,
         name: homeRoute,
         page: () {
-          return HomeScreen();
+          return const HomeScreen();
         }),
     GetPage(
         arguments: null,
         transition: Transition.size,
         name: weatherDataRoute,
         page: () {
-          return WeatherDataScreen();
+          return const WeatherDataScreen();
         }),
   ];
 }

@@ -1,9 +1,9 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_weather_app/controllers/weather_data_controller.dart';
 import 'package:get/get.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+
+import '../../controllers/weather_data_controller.dart';
+import '../../utils/app_colors.dart';
 
 class CustomProgressionBar extends StatefulWidget {
   const CustomProgressionBar({super.key});
@@ -25,7 +25,7 @@ class _CustomProgressionBarState extends State<CustomProgressionBar>
   @override
   void initState() {
     _controller =
-        AnimationController(vsync: this, duration: Duration(seconds: 60));
+        AnimationController(vsync: this, duration: const Duration(seconds: 60));
 
     _controller.addListener(() {
       animationHandler();
@@ -41,14 +41,15 @@ class _CustomProgressionBarState extends State<CustomProgressionBar>
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    double screenWidth = MediaQuery.of(context).size.width;
+    return SizedBox(
       height: 100,
       child: Column(
         children: [
           Container(
-            width: MediaQuery.of(context).size.width - 80,
+            width: screenWidth - 80,
           ),
-          Container(
+          SizedBox(
             height: 60,
             child: DefaultTextStyle(
               style: const TextStyle(
@@ -63,7 +64,7 @@ class _CustomProgressionBarState extends State<CustomProgressionBar>
                       'Plus que quelques secondes avant \nd\'avoir les resultat ...'),
                 ],
                 onTap: null,
-                pause: Duration(seconds: 3),
+                pause: const Duration(seconds: 3),
                 isRepeatingAnimation: repeatingWaitingText,
                 repeatForever: true,
               ),
@@ -73,8 +74,11 @@ class _CustomProgressionBarState extends State<CustomProgressionBar>
             child: Stack(
               children: [
                 Container(
-                  width: MediaQuery.of(context).size.width - 80,
+                  width: screenWidth - 80,
                   height: 20,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
+                      color: Colors.white),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -82,32 +86,27 @@ class _CustomProgressionBarState extends State<CustomProgressionBar>
                           width: 40,
                           child: Center(
                               child: Text(
-                            "%${progression}",
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 173, 67, 180)),
+                            "%$progression",
+                            style:
+                                const TextStyle(color: AppColors.buttonColor),
                           )))
                     ],
                   ),
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(30),
-                      color: Colors.white),
                 ),
                 AnimatedBuilder(
                   animation: _controller,
                   builder: (context, child) {
                     return Container(
-                      width: (MediaQuery.of(context).size.width - 80) *
-                          _controller.value,
+                      width: 20 + ((screenWidth - 100) * _controller.value),
                       height: 20,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
-                          gradient: LinearGradient(
-                              colors: [
-                                Color.fromARGB(255, 221, 178, 224),
-                                Color.fromARGB(255, 135, 76, 175)
-                              ],
-                              begin: Alignment.centerLeft,
-                              end: Alignment.topRight)),
+                          gradient: AppColors.progressionBarGradient),
+                      child: Row(
+                        children: [
+                          Expanded(child: Container()),
+                        ],
+                      ),
                     );
                   },
                 ),
@@ -168,6 +167,7 @@ class _CustomProgressionBarState extends State<CustomProgressionBar>
   void dispose() {
     _controller.removeListener(() {});
     _controller.dispose();
+
     super.dispose();
   }
 }

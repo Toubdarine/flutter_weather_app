@@ -1,72 +1,49 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_weather_app/routes/route_helper.dart';
 import 'package:get/get.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 
-class HomeScreen extends StatefulWidget {
+import '../../routes/route_helper.dart';
+import '../../utils/app_colors.dart';
+
+import '../../controllers/weather_data_controller.dart';
+
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
-
-class _HomeScreenState extends State<HomeScreen>
-    with SingleTickerProviderStateMixin {
-  late AnimationController animationController;
-  late CurvedAnimation animation;
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    animationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 60))
-          ..forward();
-    animation =
-        CurvedAnimation(parent: animationController, curve: Curves.bounceInOut);
-  }
-
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    super.dispose();
-    animationController.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    double screenHeight = MediaQuery.of(context).size.height;
+    double screenWidth = MediaQuery.of(context).size.width;
     return Scaffold(
       body: Stack(
         children: [
           Container(
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.height,
-            decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [
-              Color.fromARGB(255, 87, 158, 216),
-              Color.fromARGB(255, 135, 76, 175)
-            ], begin: Alignment.centerLeft, end: Alignment.topRight)),
+            width: screenWidth,
+            height: screenHeight,
+            decoration:
+                const BoxDecoration(gradient: AppColors.mainBackgroundGredient),
           ),
           Positioned(
             bottom: 20,
             child: GestureDetector(
               onTap: () {
-                print("tap tap");
+                Get.find<WeatherDataController>().removeDoesCallApiForCityMap();
+                Get.find<WeatherDataController>().setIsLoading = true;
                 Get.toNamed(RouteHelper.getWeatherDataRoute());
               },
               child: Container(
-                margin: EdgeInsets.all(40),
+                margin: const EdgeInsets.all(40),
                 height: 50,
-                width: MediaQuery.of(context).size.width - 80,
+                width: screenWidth - 80,
                 decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 150, 0, 117),
+                    color: AppColors.buttonColor,
                     borderRadius: BorderRadius.circular(60)),
-                child: Center(
+                child: const Center(
                     child: Text(
                   'Commencer',
                   style: TextStyle(
-                      fontSize: 22, color: Colors.white, letterSpacing: 1.2),
+                      fontSize: 18,
+                      color: AppColors.textButtonColor,
+                      letterSpacing: 1.2),
                 )),
               ),
             ),
@@ -75,20 +52,19 @@ class _HomeScreenState extends State<HomeScreen>
             top: 150,
             child: GestureDetector(
               onTap: () {
-                print("tap tap");
                 Get.toNamed(RouteHelper.getWeatherDataRoute());
               },
               child: Container(
-                  margin: EdgeInsets.all(40),
-                  height: 260,
-                  width: MediaQuery.of(context).size.width - 80,
+                  margin: const EdgeInsets.all(40),
+                  height: screenHeight / 3,
+                  width: screenWidth - 80,
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(60)),
-                  child: Center(
+                  child: const Center(
                       child: Text('Flutter Weather App',
                           style: TextStyle(
                               fontSize: 34,
-                              color: Colors.white,
+                              color: AppColors.textButtonColor,
                               fontWeight: FontWeight.w400)))),
             ),
           ),

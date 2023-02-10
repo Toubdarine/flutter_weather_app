@@ -1,6 +1,5 @@
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:get/get.dart';
-import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 
 class ApiClient {
@@ -15,13 +14,12 @@ class ApiClient {
         {'q': cityName, 'appid': openWeatherApiKey});
     http.Response? response;
     try {
-      print('$baseUrl$cityName&appid=$openWeatherApiKey');
-      var response = await http.get(uri);
+      response = await http.get(uri);
 
-      print('response statusCode ================= ${response.statusCode}');
       return response;
     } catch (e) {
-      print('error ================= $e');
+      //print('error ================= $e');
     }
+    return response;
   }
 }

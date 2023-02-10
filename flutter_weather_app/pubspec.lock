@@ -2,7 +2,7 @@
 # See https://dart.dev/tools/pub/glossary#lockfile
 packages:
   animated_text_kit:
-    dependency: "direct dev"
+    dependency: "direct main"
     description:
       name: animated_text_kit
       url: "https://pub.dartlang.org"
@@ -76,25 +76,11 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.1"
-  flutter_spinkit:
-    dependency: "direct dev"
-    description:
-      name: flutter_spinkit
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "5.1.0"
   flutter_test:
     dependency: "direct dev"
     description: flutter
     source: sdk
     version: "0.0.0"
-  flutter_weather_bg_null_safety:
-    dependency: "direct dev"
-    description:
-      name: flutter_weather_bg_null_safety
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.0.0"
   get:
     dependency: "direct main"
     description:
@@ -214,4 +200,4 @@ packages:
     version: "2.1.2"
 sdks:
   dart: ">=2.18.6 <3.0.0"
-  flutter: ">=2.0.0"
+  flutter: ">=1.22.0"

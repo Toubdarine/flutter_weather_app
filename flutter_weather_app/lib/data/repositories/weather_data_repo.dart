@@ -26,7 +26,6 @@ class WeatherDataRepo extends GetxService {
     // Check if the city map contains the specified city index
     if (cityMap.containsKey(cityIndex.toString())) {
       String city = cityMap[cityIndex.toString()]!;
-      print('--------------------------------city = $city');
 
       // Send a request to get weather data for the city
       try {
@@ -45,14 +44,11 @@ class WeatherDataRepo extends GetxService {
                 temperature: temp,
                 skyState: weatherDataMap['weather'][0]['description'],
                 iconCod: weatherDataMap['weather'][0]['icon']);
-
-            print('respose.body = ${weatherDataMap}');
-            print('weatherData = ${weatherData.cityName}');
           }
         }
       } catch (e) {
         // Handle the exception by printing an error message
-        print('Error getting weather data: $e');
+
       }
     }
 
